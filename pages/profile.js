@@ -1,10 +1,15 @@
 import AppLayout from "../components/AppLayout";
-
+import Head from "next/head";
 const Profile = () => {
   return (
-    <AppLayout>
-      <div>Profile</div>
-    </AppLayout>
+    <>
+      <Head>
+        <title> My Profile | NodeBird</title>
+      </Head>
+      <AppLayout>
+        <div>Profile</div>
+      </AppLayout>
+    </>
   );
 };
 
