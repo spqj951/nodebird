@@ -10,7 +10,7 @@ const SearchInput = styled(Input.Search)`
   vertical-align: "middle";
 `;
 const AppLayout = ({ children }) => {
-  const [isLogedIn, setIsLogedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div>
       <div>공통메뉴</div>
@@ -31,7 +31,11 @@ const AppLayout = ({ children }) => {
       <Row gutter={8}>
         {/* //gutter : column사이의 간격 */}
         <Col xs={24} md={6}>
-          {isLogedIn ? <UserProfile /> : <LoginForm />}
+          {isLoggedIn ? (
+            <UserProfile setIsLoggedIn={setIsLoggedIn} />
+          ) : (
+            <LoginForm setIsLoggedIn={setIsLoggedIn} />
+          )}
         </Col>
         <Col xs={24} md={12}>
           {children}
@@ -42,7 +46,7 @@ const AppLayout = ({ children }) => {
             target="_blank"
             rel="noreferrer noopener"
           >
-            Made By Kyujin
+            Made By K yujin
           </a>
           {/* Target = _blank : 새창, rel => 보안 위협 제거 */}
         </Col>

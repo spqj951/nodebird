@@ -8,7 +8,11 @@ import styled from "styled-components";
 const ButtonWrapper = styled.div`
   margin-top: 10px;
 `;
-const LoginForm = () => {
+
+const FormWrapper = styled(Form)`
+  padding: 10px;
+`;
+const LoginForm = ({ setIsLoggedIn }) => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
 
@@ -18,8 +22,15 @@ const LoginForm = () => {
   const onChangePassword = useCallback((e) => {
     setPassword(e.target.value);
   }, []);
+
+  const onSubmitForm = useCallback(() => {
+    //component에 넣을 것이라서 useCallback으로 감쌈
+    console.log(id, password);
+    setIsLoggedIn(true);
+  }, [id, password]);
   return (
-    <Form>
+    <FormWrapper onFinish={onSubmitForm}>
+      {/* htmlType="submit"을 함으로써 Form이 submit이 되고 바로 onFinish가 작동을 함, preventDefault가 이미 적용됨 */}
       <div>
         <label htmlFor="user-id">아이디</label>
         <br />
@@ -44,7 +55,7 @@ const LoginForm = () => {
           <Button>회원가입</Button>
         </Link>
       </ButtonWrapper>
-    </Form>
+    </FormWrapper>
   );
 };
 
